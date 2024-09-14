@@ -2,6 +2,7 @@
 
 return [
     "Categories" => "الأنواع",
+    "Category" => "النوع",
     "addNewCategory" => "إضافة نوع جديد",
     "Name" => "الاسم",
     "NameInEnglish" => "الاسم بالانجليزي",
@@ -10,4 +11,15 @@ return [
     "SubOptions" => "قيم الخيارات",
     "AddOption" => "إضافة خيار جديد",
     "EditOption" => "تعديل الخيار",
+    "Products" => "المنتجات",
+    "Description" => "الوصف",
+    "Ingredients" => "المكونات",
+    "HowToPrepare" => "طريقة التحضير",
+    "UnLimited" => "غير محدود",
+    "MainImage" => "الصورة الاساسية",
+    "Images" => "الصور الفرعية",
+    "Price" => "السعر",
+    "Quantity" => "الكمية",
+    "AddProduct" => "إضافة منتج جديد",
+    "EditProduct" => "تعديل المنتج",
 ];

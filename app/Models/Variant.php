@@ -11,8 +11,25 @@ class Variant extends Model
 
     protected $fillable = ['product_id', 'sub_options_ids', 'quantity', 'price', 'is_same_price'];
 
+    protected $appends = ['option', 'sub_option', 'sub_options_names'];
+
+    protected $casts = ['sub_options_ids' => 'array'];
+
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function getSubOptionsNamesAttribute()
+    {
+        $names = '';
+        foreach($this->sub_options_ids as $sub_option_id){
+          $sub_option = \App\Models\SubOption::find($sub_option_id);
+          if($sub_option){
+            $names .= $sub_option['name'].", ";
+          }
+        }
+
+        return $names;
     }
 }

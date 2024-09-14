@@ -2,6 +2,7 @@
 
 return [
    "Categories" => "Categories",
+   "Category" => "Category",
    "addNewCategory" =>"Add Category",
    "Name" => "Name",
    "NameInEnglish" => "Name In English",
@@ -9,5 +10,16 @@ return [
    "Options" => "Options",
    "SubOptions" => "Sub Options",
    "AddOption" => "Add Option",
-   "EditOption" => "Edit Option"
+   "EditOption" => "Edit Option",
+   "Products" => "Products",
+   "Description" => "Description",
+   "Ingredients" => "Ingredients",
+   "HowToPrepare" => "HowToPrepare",
+   "UnLimited" => "Is UnLimited",
+   "MainImage" => "Main Image",
+   "Images" => "Images",
+   "Price" => "Price",
+   "Quantity" => "Quantity",
+   "AddProduct" => "Add Product",
+   "EditProduct" => "Edit Product",
 ];

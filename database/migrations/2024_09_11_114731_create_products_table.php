@@ -20,7 +20,7 @@ return new class extends Migration
             $table->json('how_to_prepare')->nullable();
             $table->boolean('is_unlimited')->default(false);
             $table->string('main_image');
-            $table->text('images');
+            $table->text('images')->nullable();
             $table->integer('quantity');
             $table->double('price');
             $table->text('options_ids')->nullable();
