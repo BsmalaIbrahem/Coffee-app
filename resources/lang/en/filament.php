@@ -22,4 +22,8 @@ return [
    "Quantity" => "Quantity",
    "AddProduct" => "Add Product",
    "EditProduct" => "Edit Product",
+   "Banners" => "Banners",
+   "ToggleActive" => "Toggle Active",
+   "addNewBanner" => "Add Banner",
+   "EditBanner" => "Edit Banner",
 ];

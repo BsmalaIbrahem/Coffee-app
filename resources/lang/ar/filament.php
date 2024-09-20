@@ -22,4 +22,8 @@ return [
     "Quantity" => "الكمية",
     "AddProduct" => "إضافة منتج جديد",
     "EditProduct" => "تعديل المنتج",
+    "Banners" => "لافتات",
+    "ToggleActive" => "تغيير التفعيل",
+    "addNewBanner" => "إضافة لافتة جديدة",
+    "EditBanner" => "تعديل اللافتة",
 ];
