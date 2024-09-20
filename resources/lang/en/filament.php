@@ -26,4 +26,5 @@ return [
    "ToggleActive" => "Toggle Active",
    "addNewBanner" => "Add Banner",
    "EditBanner" => "Edit Banner",
+   "Active" => "Active",
 ];

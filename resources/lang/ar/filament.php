@@ -26,4 +26,5 @@ return [
     "ToggleActive" => "تغيير التفعيل",
     "addNewBanner" => "إضافة لافتة جديدة",
     "EditBanner" => "تعديل اللافتة",
+    "Active" => "التفعيل",
 ];
