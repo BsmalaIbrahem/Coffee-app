@@ -45,14 +45,13 @@ class BannerResource extends Resource
             ->columns([
                 Tables\Columns\ImageColumn::make('image')
                     ->label(__('filament.Image')),
-                    
+
                 Tables\Columns\IconColumn::make('is_active')
                     ->boolean()
                     ->label(__('filament.Active')),
             ])
             ->filters([
                 SelectFilter::make('is_active')
-                ->lable(__('filament.Active'))
                 ->options([
                     1 => 'Active',
                     0 => 'Inactive',
