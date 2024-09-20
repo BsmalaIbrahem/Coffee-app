@@ -35,4 +35,9 @@ class Product extends Model
     {
         return $this->hasMany(Variant::Class);
     }
+
+    public function offers()
+    {
+        return $this->morphMany('App\Models\OfferedItem', 'offeredItemable');
+    }
 }

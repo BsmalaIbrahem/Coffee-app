@@ -11,4 +11,9 @@ class Category extends Model
     use HasFactory, HasTranslations;
 
     public $translatable = ['name'];
+
+    public function offers()
+    {
+        return $this->morphMany('App\Models\OfferedItem', 'offeredItemable');
+    }
 }
