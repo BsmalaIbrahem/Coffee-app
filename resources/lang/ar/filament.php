@@ -16,7 +16,7 @@ return [
     "Ingredients" => "المكونات",
     "HowToPrepare" => "طريقة التحضير",
     "UnLimited" => "غير محدود",
-    "MainImage" => "الصورة الاساسية",
+    "Image" => "الصورة الاساسية",
     "Images" => "الصور الفرعية",
     "Price" => "السعر",
     "Quantity" => "الكمية",
