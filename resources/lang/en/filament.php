@@ -16,7 +16,7 @@ return [
    "Ingredients" => "Ingredients",
    "HowToPrepare" => "HowToPrepare",
    "UnLimited" => "Is UnLimited",
-   "Image" => "Main Image",
+   "Image" => "Image",
    "Images" => "Images",
    "Price" => "Price",
    "Quantity" => "Quantity",
