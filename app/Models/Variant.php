@@ -23,13 +23,18 @@ class Variant extends Model
     public function getSubOptionsNamesAttribute()
     {
         $names = '';
-        foreach($this->sub_options_ids as $sub_option_id){
-          $sub_option = \App\Models\SubOption::find($sub_option_id);
-          if($sub_option){
-            $names .= $sub_option['name'].", ";
-          }
+  
+        if(!is_array($this->sub_options_ids)){
+          $this->sub_options_ids = json_decode($this->sub_options_ids);
         }
-
+          foreach($this->sub_options_ids as $sub_option_id){
+            $sub_option = \App\Models\SubOption::find($sub_option_id);
+            if($sub_option){
+              $names .= $sub_option['name'].", ";
+            }
+        }
+      
         return $names;
+
     }
 }

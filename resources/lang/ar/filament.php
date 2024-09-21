@@ -36,4 +36,5 @@ return [
     "addNewOffer" => "إضافة خصم جديد",
     "EditOffer" => "تعديل الخصم",
     "Offer" => "الخصم",
+    "is_same_price" => "نفس السعر",
 ];

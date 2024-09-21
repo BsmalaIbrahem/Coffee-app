@@ -36,4 +36,5 @@ return [
    "addNewOffer" => "Add Discount",
    "EditOffer" => "Edit Discount",
    "Offer" => "Discount",
+   "is_same_price" => "Is Same Price",
 ];

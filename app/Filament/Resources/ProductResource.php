@@ -76,8 +76,8 @@ class ProductResource extends Resource
                 ->default(0)
                 ->label(__('filament.Quantity')),
 
-                Forms\Components\Toggle::make('is_same_price')
-                ->label(__('filament.is_same_price'))
+                Forms\Components\Toggle::make('is_unlimited')
+                ->label(__('filament.UnLimited'))
                 ->onIcon('heroicon-m-bolt')
                 ->offIcon('heroicon-m-user'),
             ]);

@@ -44,12 +44,12 @@ class VariantsRelationManager extends RelationManager
                             ]),
                             Forms\Components\TextInput::make('price')
                                 ->numeric()
-                                ->required()
                                 ->label(__('filament.Price')),
 
                             Forms\Components\TextInput::make('quantity')
                                 ->numeric()
                                 ->default(0)
+                                ->required()
                                 ->label(__('filament.Quantity')),
 
                             Forms\Components\Toggle::make('is_same_price')
@@ -89,6 +89,7 @@ class VariantsRelationManager extends RelationManager
             ->headerActions([
                 Tables\Actions\CreateAction::make()
                 ->using(function (array $data, string  $model)  {
+                
                     foreach($data['Variants'] as $variant){
                         $sub_options=[];
                         foreach($variant['Options'] as $option){
