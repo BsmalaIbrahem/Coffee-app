@@ -27,4 +27,13 @@ return [
     "addNewBanner" => "إضافة لافتة جديدة",
     "EditBanner" => "تعديل اللافتة",
     "Active" => "التفعيل",
+    "Value" => "القيمة",
+    "Type" => "النوع",
+    "StartDate" => "تاريخ البداية",
+    "EndDate" => "تاريخ الانتهاء",
+    "isGlobal" => "عامة للكل",
+    "Offers" => "الخصومات",
+    "addNewOffer" => "إضافة خصم جديد",
+    "EditOffer" => "تعديل الخصم",
+    "Offer" => "الخصم",
 ];

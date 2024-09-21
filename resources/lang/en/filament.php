@@ -27,4 +27,13 @@ return [
    "addNewBanner" => "Add Banner",
    "EditBanner" => "Edit Banner",
    "Active" => "Active",
+   "Value" => "Value",
+   "Type" => "Type",
+   "StartDate" => "Start Date",
+   "EndDate" => "End Date",
+   "isGlobal" => "Is Global",
+   "Offers" => "Discounts",
+   "addNewOffer" => "Add Discount",
+   "EditOffer" => "Edit Discount",
+   "Offer" => "Discount",
 ];

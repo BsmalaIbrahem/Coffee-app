@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('offers', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullbale();
+            $table->string('name')->nullable();
             $table->decimal('value');
             $table->enum('type', ['flat', 'percentage']);
             $table->timestamp('start_date')->nullable();

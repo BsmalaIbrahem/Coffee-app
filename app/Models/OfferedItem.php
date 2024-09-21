@@ -10,6 +10,7 @@ class OfferedItem extends Model
     use HasFactory;
 
     protected $fillable = ['offer_id'];
+    protected $appends = ['name', 'type'];
 
     public function offeredItemable()
     {
@@ -19,6 +20,18 @@ class OfferedItem extends Model
     public function offer()
     {
         return $this->belongsTo(Offer::class);
+    }
+
+    public function getNameAttribute()
+    {
+        $item = $this->offeredItemable_type::find($this->offeredItemable_id);
+        return $item?->name;
+    }
+
+    public function getTypeAttribute()
+    {
+        $parts = explode('\\', $this->offeredItemable_type);
+        return end($parts);
     }
 
 }
