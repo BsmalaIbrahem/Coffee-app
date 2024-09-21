@@ -28,6 +28,7 @@ class VariantsRelationManager extends RelationManager
                         Tabs\Tab::make('Options')->schema([
                             Repeater::make('Options')->schema([
                                 Forms\Components\Select::make('option')
+                                    ->label(__('filament.Option'))
                                     ->options(\App\Models\Option::all()->pluck('name', 'id'))
                                     ->searchable()
                                     ->preload()
@@ -35,7 +36,7 @@ class VariantsRelationManager extends RelationManager
                                     ->afterStateUpdated(fn (Set $set) => $set('sub_option', null)),
 
                                 Forms\Components\Select::make('sub_option')
-                                ->label(__('filament.SubOption'))
+                                ->label(__('filament.Value'))
                                 ->required()
                                 ->preload()
                                 ->searchable()
@@ -96,11 +97,12 @@ class VariantsRelationManager extends RelationManager
                             array_push($sub_options, (int)$option['sub_option']);
                         }
 
+                        $price = $variant['is_same_price'] ? null : $variant['price'];
                          $m = $model::create([
                             'product_id' => $this->getOwnerRecord()->id,
                             'sub_options_ids' => json_encode($sub_options),
                             'quantity' => $variant['quantity'],
-                            'price' => $variant['price'],
+                            'price' => $price,
                             'is_same_price' => $variant['is_same_price']
                         ]);
                     }
@@ -108,7 +110,7 @@ class VariantsRelationManager extends RelationManager
                 }),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+               // Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([

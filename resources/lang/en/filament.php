@@ -8,6 +8,7 @@ return [
    "NameInEnglish" => "Name In English",
    "NamrInArabic" => "Namr In Arabic",
    "Options" => "Options",
+   "Option" => "Option",
    "SubOptions" => "Sub Options",
    "AddOption" => "Add Option",
    "EditOption" => "Edit Option",

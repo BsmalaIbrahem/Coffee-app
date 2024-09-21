@@ -8,6 +8,7 @@ return [
     "NameInEnglish" => "الاسم بالانجليزي",
     "NamrInArabic" => "الاسم بالعربي",
     "Options" => "خيارات",
+    "Option" => "خيار",
     "SubOptions" => "قيم الخيارات",
     "AddOption" => "إضافة خيار جديد",
     "EditOption" => "تعديل الخيار",
