@@ -49,4 +49,14 @@ class User extends Authenticatable implements FilamentUser
     {
         return str_ends_with($this->email, '@gmail.com');
     }
+
+    public function phones()
+    {
+        return $this->hasMany(Phone::class);
+    }
+
+    public function addresses()
+    {
+        return $this->hasMany(Address::class);
+    }
 }
