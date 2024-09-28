@@ -19,6 +19,8 @@ class BannerResource extends Resource
 {
     protected static ?string $model = Banner::class;
 
+    protected static ?string $navigationGroup = 'Sliders';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function getPluralModelLabel(): string

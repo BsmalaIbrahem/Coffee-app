@@ -17,6 +17,8 @@ class CartResource extends Resource
 {
     protected static ?string $model = Cart::class;
 
+    protected static ?string $navigationGroup = 'User';
+
     protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
 
     public static function form(Form $form): Form

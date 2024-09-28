@@ -19,6 +19,8 @@ class ProductResource extends Resource
     use Translatable;
     protected static ?string $model = Product::class;
 
+    protected static ?string $navigationGroup = 'Product';
+
     protected static ?string $navigationIcon = 'heroicon-o-squares-2x2';
 
     public static function getPluralModelLabel(): string

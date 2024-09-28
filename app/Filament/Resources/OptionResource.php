@@ -20,6 +20,8 @@ class OptionResource extends Resource
     
     protected static ?string $model = Option::class;
 
+    protected static ?string $navigationGroup = 'Product';
+
     protected static ?string $navigationIcon = 'heroicon-o-chevron-up-down';
 
     public static function getPluralModelLabel(): string
