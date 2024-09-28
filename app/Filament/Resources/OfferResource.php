@@ -18,7 +18,7 @@ class OfferResource extends Resource
 {
     protected static ?string $model = Offer::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-minus-circle';
 
     public static function getPluralModelLabel(): string
     {
