@@ -20,8 +20,18 @@ class Offer extends Model
         'is_active' => 'boolean',  
     ];
 
+    protected $appends = ['type_flag'];
+
     public function items()
     {
         return $this->hasMany(OfferedItem::class);
+    }
+
+    public function getTypeFlagAttribute()
+    {
+        if($this->type == "percentage")
+            return "%";
+
+        return "EG";
     }
 }
