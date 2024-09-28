@@ -40,4 +40,7 @@ return [
     "is_same_price" => "نفس السعر",
     "Email" => "الإيميل",
     "Phones" => "أرقام الهاتف ",
+    "Total" => "المبلغ",
+    "DeliveryFee" => "التوصيل",
+    "Address" => "العنوان",
 ];

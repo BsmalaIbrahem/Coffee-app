@@ -39,5 +39,8 @@ return [
    "Offer" => "Discount",
    "is_same_price" => "Is Same Price",
    "Email" => "Email",
-   "Phones" => "Phone Numbers"
+   "Phones" => "Phone Numbers",
+   "Total" => "Total",
+   "DeliveryFee" => "Delivery Fee",
+   "Address" => "Address",
 ];
