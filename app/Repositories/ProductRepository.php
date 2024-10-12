@@ -18,6 +18,11 @@ class ProductRepository implements GenericRepository
 
     public function getByFilter($filter)
     {
-        return product::where($filter['type'], $filter['value']);
+        return product::where($filter['type'], $filter['value'])->paginate(6);
+    }
+
+    public function getWithRelations($relations)
+    {
+        return Product::with($relations)->paginate(6);
     }
 }
