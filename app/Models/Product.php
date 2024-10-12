@@ -21,7 +21,8 @@ class Product extends Model
         'images',
         'quantity',
         'price',
-        'options_ids'
+        'options_ids',
+        'views',
     ];
 
     public $translatable = ['name', 'description', 'ingredients', 'how_to_prepare'];
