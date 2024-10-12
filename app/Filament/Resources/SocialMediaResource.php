@@ -17,7 +17,7 @@ class SocialMediaResource extends Resource
 {
     protected static ?string $model = SocialMedia::class;
 
-    protected static ?string $navigationGroup = 'Sliders';
+    protected static ?string $navigationGroup = 'Website Assets';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
