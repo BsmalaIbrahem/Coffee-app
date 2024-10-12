@@ -17,6 +17,8 @@ class ContactUsResource extends Resource
 {
     protected static ?string $model = ContactUs::class;
 
+    protected static ?string $navigationGroup = 'User';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function getPluralModelLabel(): string
