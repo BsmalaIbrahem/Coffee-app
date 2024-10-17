@@ -24,7 +24,7 @@
           @foreach($categories[$i]->products as $product)
             <div class="col-md-4 py-3 py-md-0">
               <div class="card">
-                <img src="{{asset('storage/product['image']'}}" alt="">
+                <img src='{{asset("storage/".$product["image"])}}' alt="">
                 <div class="card-body">
                   <h3>{{$product['name']}}</h3>
                   <h6><hr></h6>
