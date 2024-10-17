@@ -24,11 +24,11 @@
           @foreach($categories[$i]->products as $product)
             <div class="col-md-4 py-3 py-md-0">
               <div class="card">
-                <img src="images/2.png" alt="">
+                <img src="{{asset('storage/product['image']'}}" alt="">
                 <div class="card-body">
-                  <h3>Turkish Coffee</h3>
+                  <h3>{{$product['name']}}</h3>
                   <h6><hr></h6>
-                  <p>20 EG
+                  <p>{{$product['price']}} EG
                     <i class="h3"><span class="mdi mdi-heart-outline"></span></i>
                   </p>
                   <div style="text-align:center;">
