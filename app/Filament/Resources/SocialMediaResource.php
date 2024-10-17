@@ -34,6 +34,7 @@ class SocialMediaResource extends Resource
                     'Location' => 'Location',
                     'Facebook' => "Facebook",
                     "Instagram" => "Instagram",
+                    "TikTook" => "TikTook", 
                 ])
                 ->searchable()
                 ->required(),

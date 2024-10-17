@@ -12,6 +12,11 @@ class Category extends Model
 
     public $translatable = ['name'];
 
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
     public function offers()
     {
         return $this->morphMany('App\Models\OfferedItem', 'offeredItemable');

@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Models\Offer;
 use App\Services\OfferService;
+use App\Models\Category;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,9 +23,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::composer('*', function ($view) {
+        View::composer(['partials.offer'], function ($view) {
             $offer = Offer::latest('id')->first();
             $view->with('offer', $offer);
+        });
+
+        View::composer('*', function ($view) {
+            $categories = Category::with(['products' => function($q){
+                $q->take(3);
+            }])->take(3)->get();
+            $view->with('categories', $categories);
         });
     }
 }
