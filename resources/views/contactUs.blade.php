@@ -12,7 +12,7 @@
         @elseif($ContactMethod['type'] ==  'Gmail')
             <i class="fa-solid fa-envelope"><span>{{$ContactMethod['value']}}</span></i><br><br>
         @else
-            <i class="fa-solid fa-location-dot"><span>{{$ContactMethod['value']}}</span></i>
+            <i class="fa-solid fa-location-dot"><span>{{$ContactMethod['value']}}</span></i><br><br>
         @endif
       @endforeach
     </div>
