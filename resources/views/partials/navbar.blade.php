@@ -17,7 +17,7 @@
       </li>
     </ul>
 
-    <a href="index.html" class="navbar-brand me-auto" id="logo">
+    <a href="{{route('home')}}" class="navbar-brand me-auto" id="logo">
         <img src="{{asset('images/logo.png')}}">
     </a>
 
