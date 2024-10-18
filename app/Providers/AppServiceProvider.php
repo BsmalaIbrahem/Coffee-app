@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer('*', function ($view) {
             $categories = Category::with(['products' => function($q){
-                $q->limit(3);
+                $q->latest()->limit(3);
             }])->get();
             $view->with('categories', $categories);
         });
