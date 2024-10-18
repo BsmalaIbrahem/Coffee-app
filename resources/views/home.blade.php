@@ -1,3 +1,7 @@
+
+@if(session('message'))
+  <x-alert level="info" message="{{session('message')}}" />
+@endif
 @include('partials.offer')
 @include('partials.headTags')
 @include('partials.navbar')

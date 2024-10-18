@@ -19,6 +19,6 @@ class ContactUsController extends Controller
     public function create(CreateRequest $request)
     {
         $this->service->create($request->all());
-        return redirect()->route('home');
+        return redirect()->route('home')->with('message', "Sent successfully!");
     }
 }

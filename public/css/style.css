@@ -396,3 +396,10 @@ html::-webkit-scrollbar{
     }
 }
 
+
+.alert{
+    background-color: #E59A59;
+    color:white;
+    width:300px;
+    margin:auto;
+}
