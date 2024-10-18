@@ -18,21 +18,23 @@
     </div>
 
     <div class="col-md-7 py-3 py-md-0">
-      <form action="#">
+      <form action="{{route('contactUs')}}" method="post">
+        @csrf
+        @include('partials.validationError')
         <div class="mb-3 mt-3">
-          <input type="text" class="form-control" id="name" placeholder="Enter Name" required>
+          <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" required>
         </div>
 
         <div class="mb-3 mt-3">
-          <input type="email" class="form-control" id="email" placeholder="Enter Email" required>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
         </div>
 
         <div class="mb-3 mt-3">
-          <input type="number" class="form-control" id="number" placeholder="Enter Number" required>
+          <input type="number" class="form-control" id="number" name="phone_number" placeholder="Enter Number" required>
         </div>
 
 
-         <textarea  class="form-control" id="comment" rows="5" name="text" placeholder="Enter Message" required></textarea>
+         <textarea  class="form-control" id="comment" rows="5" name="message" placeholder="Enter Message" required></textarea>
 
          <button type="submit" class="order-btn">Send Message</button>
       </form>

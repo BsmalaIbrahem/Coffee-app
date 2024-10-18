@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\HomeController;
+use App\Http\Controllers\Web\ContactUsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,5 +16,6 @@ use App\Http\Controllers\Web\HomeController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::post('contact-us', [ContactUsController::class, 'create'])->name('contactUs');
 
 Route::get('/t');
