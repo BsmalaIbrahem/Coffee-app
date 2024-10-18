@@ -41,9 +41,16 @@
       <a href="login.html">
         <span class="mdi mdi-account-outline"></span>
       </a>
-      <a href="#">
-        <span class="mdi mdi-abjad-arabic"></span>
-      </a>
+      @if(session('language') == 'en')
+        <a href="{{route('changeLanguage')}}">
+          <span class="mdi mdi-abjad-arabic"></span>
+        </a>
+      @else
+        <a href="{{route('changeLanguage')}}">
+          <span class="mdi mdi-alpha-e-box" ></span>
+        </a>
+      @endif
+      
     </div>
 
   </div>

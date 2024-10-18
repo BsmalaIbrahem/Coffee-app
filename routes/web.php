@@ -14,8 +14,11 @@ use App\Http\Controllers\Web\ContactUsController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::controller(HomeController::class)->group(function(){
+    Route::get('/','index')->name('home');
+    Route::get('changeLanguage', 'changeLanguage')->name('changeLanguage');
+});
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('contact-us', [ContactUsController::class, 'create'])->name('contactUs');
 
 Route::get('/t');
