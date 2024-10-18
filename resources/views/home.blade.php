@@ -21,14 +21,19 @@
           <h2>Delicious Coffee Is Here <i class="fa-solid fa-arrow-down"></i></h2>
         @endif
         <div class="row" style="margin-top: 30px;">
-          @foreach($categories[$i]->products as $product)
+          @if(count($categories[$i]->products) >=3)
+            @php $len = 3 @endphp
+          @else
+             @php $len = count($categories[$i]->products) @endphp
+          @endif
+          @for($j=0 ; $j< $len; $j++)
             <div class="col-md-4 py-3 py-md-0">
               <div class="card">
-                <img src='{{asset("/storage/".$product["main_image"])}}' alt="">
+                <img src='{{asset("/storage/".$categories[$i]->products[$j]["main_image"])}}' alt="">
                 <div class="card-body">
-                  <h3>{{$product['name']}}</h3>
+                  <h3>{{$categories[$i]->products[$j]['name']}}</h3>
                   <h6><hr></h6>
-                  <p>{{$product['price']}} EG
+                  <p>{{$categories[$i]->products[$j]['price']}} EG
                     <i class="h3"><span class="mdi mdi-heart-outline"></span></i>
                   </p>
                   <div style="text-align:center;">
@@ -37,7 +42,7 @@
                 </div>
               </div>
             </div>
-          @endforeach
+          @endfor
         </div>
       </section>
       <div class="container">
