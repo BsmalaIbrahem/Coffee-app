@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\ContactUsController;
+use App\Http\Controllers\Web\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,10 @@ use App\Http\Controllers\Web\ContactUsController;
 Route::controller(HomeController::class)->group(function(){
     Route::get('/','index')->name('home');
     Route::get('changeLanguage', 'changeLanguage')->name('changeLanguage');
+});
+
+Route::prefix('products')->controller(ProductController::class)->group(function(){
+    Route::get('increment-view/{id}', 'incrementViews');
 });
 
 Route::post('contact-us', [ContactUsController::class, 'create'])->name('contactUs');
