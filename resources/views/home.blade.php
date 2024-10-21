@@ -41,12 +41,12 @@
                     <i class="h3"><span class="mdi mdi-heart-outline"></span></i>
                   </p>
                   <div style="text-align:center;">
-                    <button class="btn btn-light incrementView" data-bs-toggle="offcanvas" data-bs-target="#{{$categories[$i]->products[$j]['name']}}"  data-product-id="{{ $categories[$i]->products[$j]['id']}}">Quick View</button>
+                    <button class="btn btn-light incrementView" data-bs-toggle="offcanvas" data-bs-target="#pro{{$categories[$i]->products[$j]['id']}}"  data-product-id="{{ $categories[$i]->products[$j]['id']}}">Quick View</button>
                   </div>
                 </div>
               </div>
             </div>
-            <div id="{{$categories[$i]->products[$j]['name']}}" class="offcanvas offcanvas-top mt-5 mx-auto" style="width:700px; height:600px;">
+            <div id="pro{{$categories[$i]->products[$j]['id']}}" class="offcanvas offcanvas-top mt-5 mx-auto" style="width:700px; height:600px;">
               <div class="offcanvas-header">
                 <h2 class="offcanvas-title"></h2>
                 <button class="btn-close" data-bs-dismiss="offcanvas"></button>
