@@ -200,10 +200,26 @@ html::-webkit-scrollbar{
     color: #E59A59;
     cursor: pointer;
 }
+.menu .card{
+    margin:auto;
+    border:0;
+    max-width:350px;
+}
 
+.menu .card img{
+    max-width:250px;
+    margin:auto;
+}
+.menu .card-product{
+    
+    margin-bottom:80px;
+}
 @media screen and (max-width: 768px) {
     .menu {
         padding: 10px 5px;
+    }
+    .menu .card-product{
+        margin-bottom:0px;
     }
 }
 /* Our Menu End */
