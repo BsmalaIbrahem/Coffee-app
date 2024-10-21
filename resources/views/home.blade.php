@@ -152,7 +152,7 @@
                           variantPrice += '</del>';
                           variantPrice += variant.price_after_discount + ' EG';
                         }else{
-                          variantPrice += variant.price ?? variant.product.price + ' EG';
+                          variantPrice += variant.price + ' EG' ?? variant.product.price + ' EG';
                         }
 
                         if (variant.sub_options && variant.sub_options.length) {
