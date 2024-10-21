@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\View;
 use App\Models\Offer;
 use App\Services\OfferService;
 use App\Models\Category;
+use App\Services\SocialMediaService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        View::composer('*', function($view){
+            $allSocialMedia = (new SocialMediaService)->get();
+            $view->with('allSocialMedia', $allSocialMedia);
+        });
+
         View::composer(['partials.offer'], function ($view) {
             $offer = Offer::where('is_active', true)->latest('id')->first();
             $view->with('offer', $offer);

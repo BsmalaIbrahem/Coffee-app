@@ -23,6 +23,7 @@ Route::controller(HomeController::class)->group(function(){
 
 Route::prefix('products')->controller(ProductController::class)->group(function(){
     Route::get('increment-view/{id}', 'incrementViews');
+    Route::get('/', 'index')->name('get-product');
 });
 
 Route::get('variant/{id}', [VariantController::Class, 'get']);
@@ -34,7 +35,9 @@ Route::get('/t', function(){
 
     $p = \App\Models\Product::with(['variants', 'variants.subOptions', 'variants.subOptions.option'])
         ->get();
-    return $p;
+    
+    $c = \App\Models\Category::where('name->en', 'Flavoured')->first();
+    return $c;
 });
 
 Route::get('variants/{id}', [VariantController::Class, 'get']);

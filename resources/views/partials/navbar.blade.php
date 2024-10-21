@@ -8,7 +8,7 @@
     <ul class="navbar-nav me-auto">
       @foreach($categories as $category)
         <li class="nav-item">
-            <a href="products.html" class="nav-link">{{$category['name']}}</a>
+            <a href="{{route('get-product', ['category' => $category['name']])}}" class="nav-link">{{$category['name']}}</a>
         </li>
       @endforeach
       

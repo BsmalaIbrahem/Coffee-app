@@ -14,6 +14,13 @@ class ProductController extends Controller
         $this->service = $service;
     }
 
+    public function index()
+    {
+        $products = $this->service->index();
+       // return $products;
+        return view('product', ['products' => $products]);
+    }
+
     public function incrementViews($id)
     {
         $this->service->incrementViews($id);
