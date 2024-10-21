@@ -21,11 +21,11 @@
         <img src="{{asset('images/logo.png')}}">
     </a>
 
-    <form class="d-flex" style="margin-right:5px; margin-top:5px;">
+    <form action="{{route('get-product')}}" method="get" class="d-flex" style="margin-right:5px; margin-top:5px;">
 
       <div class="input-group input-group-md mb-3">
 
-        <input type="text" class="form-control" aria-label="Search" placeholder="Search" required aria-describedby="basic-addon1">
+        <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="search_key" required aria-describedby="basic-addon1">
         <div class="input-group-prepend">
           <button class="btn btn-outline-secondary" type="button"  id="basic-addon1">
             <i class="fas fa-search"></i>

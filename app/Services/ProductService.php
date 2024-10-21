@@ -20,7 +20,7 @@ class ProductService extends BaseService
         }
         else if(request()->has('search_key'))
         {
-            //
+            $filterMethod = $this->getMethodBySearchKey();
         }
         return $this->get($filterMethod, true, ['variants', 'variants.subOptions', 'variants.subOptions.option']);
     }
@@ -42,6 +42,14 @@ class ProductService extends BaseService
             $q->wherehas('category', function($q){
                 $q->where('name->'.app()->getLocale(), request()->get('category'));
             });
+        };
+    }
+
+    private function getMethodBySearchKey()
+    {
+        $search_key = '%' .trim(request()->get('search_key')). '%';
+        return function($q) use ($search_key){
+            $q->where('name->en', 'like', $search_key)->orWhere('name->ar', 'like', $search_key);
         };
     }
 }

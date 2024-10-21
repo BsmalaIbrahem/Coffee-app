@@ -47,7 +47,7 @@
 </style>
 
 <section class="products">
-  <h2 class="text-center py-3 bg-light" style="color:#212529c9; margin-bottom:30px;">{{request()->get('category') ?? ''}}</h2>
+  <h2 class="text-center py-3 bg-light" style="color:#212529c9; margin-bottom:30px;">{{request()->get('category') ?? request()->get('search_key') }}</h2>
 
   <div class="d-flex justify-content-center">
         <div class="select-container">
