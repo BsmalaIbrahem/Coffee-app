@@ -37,7 +37,13 @@
                 <div class="card-body">
                   <h3>{{$categories[$i]->products[$j]['name']}}</h3>
                   <h6><hr></h6>
-                  <p>{{$categories[$i]->products[$j]['price']}} EG
+                    <p>
+                      @if($categories[$i]->products[$j]['price_after_discount'] > 0)
+                        <del style="text-decoration: line-through;">{{$categories[$i]->products[$j]['price']}} EG</del>
+                        {{$categories[$i]->products[$j]['price_after_discount']}} EG
+                      @else
+                        {{$categories[$i]->products[$j]['price']}} EG
+                      @endif
                     <i class="h3"><span class="mdi mdi-heart-outline"></span></i>
                   </p>
                   <div style="text-align:center;">
@@ -59,8 +65,19 @@
                   <div class="col-12 col-md-6" style="margin-right: 5px;">
                     <h2>
                       {{$categories[$i]->products[$j]['name']}} 
-                      <span style="color:#E59A59" class="price{{$categories[$i]->products[$j]['id']}}"></span>
                     </h2>
+                    @if(count($categories[$i]->products[$j]['variants']) > 0)
+                      <h3><span style="color:#E59A59" class="price{{$categories[$i]->products[$j]['id']}}"></span></h3>
+                    @else
+                      <h3><span style="color:#E59A59">
+                        @if($categories[$i]->products[$j]['price_after_discount'] > 0)
+                          <del style="text-decoration: line-through;">{{$categories[$i]->products[$j]['price']}} EG</del>
+                          {{$categories[$i]->products[$j]['price_after_discount']}} EG
+                        @else
+                          {{$categories[$i]->products[$j]['price']}} EG
+                        @endif
+                      </span></h3>
+                    @endif
                     <p style="text-align:justify;">{{$categories[$i]->products[$j]['description']}}</p>
                     <hr>
                     @if(count($categories[$i]->products[$j]['variants']) > 0)
@@ -127,6 +144,16 @@
                         const variant = response.data;
                         let variantDetails = '#' + variant.product_id;
                         let detailsHtml = ``;
+                        let variantPrice = '';
+                        if(variant && variant?.price_after_discount > 0){
+                          //style="text-decoration: line-through;"
+                          variantPrice += '<del style="text-decoration: line-through;">'
+                          variantPrice += variant.price + ' EG ';
+                          variantPrice += '</del>';
+                          variantPrice += variant.price_after_discount + ' EG';
+                        }else{
+                          variantPrice += variant.price ?? variant.product.price + ' EG';
+                        }
 
                         if (variant.sub_options && variant.sub_options.length) {
                             detailsHtml += '<ul>';
@@ -136,7 +163,7 @@
                             detailsHtml += '</ul>';
                         }
 
-                        $('.price'+variant.product_id).html(variant.price);
+                        $('.price'+variant.product_id).html(variantPrice);
                         $(variantDetails).html(detailsHtml);
                         //$('#product-price').html(variant.price);
                     },

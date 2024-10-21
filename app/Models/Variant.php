@@ -11,7 +11,7 @@ class Variant extends Model
 
     protected $fillable = ['product_id','quantity', 'price', 'is_same_price'];
 
-    protected $appends = ['name'];
+    protected $appends = ['name', 'price_after_discount'];
 
 
     public function product()
@@ -42,5 +42,22 @@ class Variant extends Model
       
         return $names;
 
+    }
+
+    public function getPriceAfterDiscountAttribute()
+    {
+        $offers = $this->product->offers;
+        for($i=count($offers) - 1; $i >= 0; $i++)
+        {
+            $offer = \App\Models\Offer::find($offers[$i]['offer_id']);
+            if($offer){
+                if($offer['type'] == 'percentage'){
+                    return $this->price - (($offer['value'] / 100) * $this->price);
+                }else
+                    return $this->price - $offer['value']; 
+            }
+            
+        }
+        return 0;
     }
 }

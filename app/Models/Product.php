@@ -27,6 +27,8 @@ class Product extends Model
 
     public $translatable = ['name', 'description', 'ingredients', 'how_to_prepare'];
 
+    protected $appends = ['price_after_discount'];
+
     protected $casts = [
         'options_ids' => 'array',
     ];
@@ -44,5 +46,22 @@ class Product extends Model
     public function offers()
     {
         return $this->morphMany('App\Models\OfferedItem', 'offeredItemable');
+    }
+
+    public function getPriceAfterDiscountAttribute()
+    {
+        $offers = $this->offers;
+        for($i=count($offers) - 1; $i >= 0; $i++)
+        {
+            $offer = \App\Models\Offer::find($offers[$i]['offer_id']);
+            if($offer){
+                if($offer['type'] == 'percentage'){
+                    return $this->price - (($offer['value'] / 100) * $this->price);
+                }else
+                    return $this->price - $offer['value']; 
+            }
+            
+        }
+        return 0;
     }
 }
