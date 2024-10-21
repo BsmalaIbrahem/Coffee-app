@@ -56,7 +56,7 @@ class Product extends Model
             $offer = \App\Models\Offer::find($offers[$i]['offer_id']);
             if($offer){
                 if($offer['type'] == 'percentage'){
-                    return ceil($this->price - (($offer['value'] / 100) * $this->price));
+                    return floor($this->price - (($offer['value'] / 100) * $this->price));
                 }else
                     return $this->price - $offer['value']; 
             }
