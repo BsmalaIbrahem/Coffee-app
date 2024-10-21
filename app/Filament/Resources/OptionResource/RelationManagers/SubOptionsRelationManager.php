@@ -30,6 +30,11 @@ class SubOptionsRelationManager extends RelationManager
                     ->required()
                     ->label(__('filament.NamrInArabic'))
                     ->maxLength(255),
+
+                Forms\Components\TextInput::make('unit')
+                    ->required()
+                    ->label(__('filament.Unit'))
+                    ->maxLength(255),
                 
             ]);
     }
@@ -41,6 +46,9 @@ class SubOptionsRelationManager extends RelationManager
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                 ->label(__('filament.Name')),
+
+                Tables\Columns\TextColumn::make('unit')
+                ->label(__('filament.Unit')),
             ])
             ->filters([
                 //
@@ -52,6 +60,7 @@ class SubOptionsRelationManager extends RelationManager
                     return $model::create([
                         'name' => ['ar' => $data['nameInArabic'], 'en' => $data['name']],
                         'option_id' => $this->getOwnerRecord()->id,
+                        'unit' => $data['unit'],
                     ]);
                 }),
                 Tables\Actions\LocaleSwitcher::make(),

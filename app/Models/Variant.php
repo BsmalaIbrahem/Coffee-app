@@ -9,29 +9,35 @@ class Variant extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['product_id', 'sub_options_ids', 'quantity', 'price', 'is_same_price'];
+    protected $fillable = ['product_id','quantity', 'price', 'is_same_price'];
 
-    protected $appends = ['option', 'sub_option', 'sub_options_names'];
+    protected $appends = ['name'];
 
-    protected $casts = ['sub_options_ids' => 'array'];
 
     public function product()
     {
         return $this->belongsTo(Product::class);
     }
 
-    public function getSubOptionsNamesAttribute()
+    public function subOptions()
+    {
+      return $this->belongsToMany(SubOption::class, 'variants_sub_options');
+    }
+
+    public function getPriceAttribute($val)
+    {
+      return $val == 0 ? $this->product['price'] : $val;
+    }
+
+    public function getNameAttribute()
     {
         $names = '';
-  
-        if(!is_array($this->sub_options_ids)){
-          $this->sub_options_ids = json_decode($this->sub_options_ids);
-        }
-          foreach($this->sub_options_ids as $sub_option_id){
-            $sub_option = \App\Models\SubOption::find($sub_option_id);
-            if($sub_option){
-              $names .= $sub_option['name'].", ";
-            }
+          foreach($this->subOptions as $sub_option){
+              $names .= $sub_option['name'];
+              if($sub_option['unit'])
+                $names .= " " . $sub_option['unit'];
+
+              $names .= ", ";
         }
       
         return $names;

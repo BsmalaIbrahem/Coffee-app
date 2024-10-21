@@ -55,7 +55,7 @@
 
   </div>
 
-  <a href="index.html" class="navbar-brandd-mobile me-auto" id="logo">
+  <a href="{{route('home')}}" class="navbar-brandd-mobile me-auto" id="logo">
         <img src="images/logo.png">
   </a>
 </nav>

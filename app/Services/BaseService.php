@@ -6,7 +6,7 @@ abstract class BaseService
 {
     abstract protected function model();
 
-    public function get(callable $filters = null, bool $paginate = false, array $relations = array(), bool $take = false)
+    public function get(callable $filters = null, bool $paginate = false, array $relations = array(), bool $take = false , bool $first = false)
     {
         $query = $this->model()::query();
         if($filters)
@@ -19,7 +19,7 @@ abstract class BaseService
         if($take && !$paginate)
             $query->take(3);
 
-        return $paginate ? $query->paginate(6) : $query->get();
+        return $first ? $query->first() : ($paginate ? $query->paginate(6) : $query->get());
     }
 
     private function search($query)

@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::composer('*', function ($view) {
-            $categories = Category::with(['products'])->get();
+            $categories = Category::with(['products','products.variants', 'products.variants.subOptions', 'products.variants.subOptions.option'])->get();
             $view->with('categories', $categories);
         });
     }

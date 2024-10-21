@@ -74,6 +74,9 @@ html::-webkit-scrollbar{
     display: block;
     margin-left: auto;
     }
+    .menu .card{
+        border:0;
+    }
 }
 
 
@@ -197,9 +200,78 @@ html::-webkit-scrollbar{
     color: #E59A59;
     cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+    .menu {
+        padding: 10px 5px;
+    }
+}
 /* Our Menu End */
 
-
+.offcanvas {
+    background-color: #f8f9fa; /* Light background for better contrast */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    overflow:auto;
+  }
+  
+  .offcanvas .offcanvas-header {
+    border-bottom: 1px solid #dee2e6; /* Subtle border below header */
+    padding: 15px 20px; /* Padding for header */
+  }
+  
+  .offcanvas .offcanvas-title {
+    font-size: 1.5rem; /* Larger title font size */
+    font-weight: bold; /* Bold title */
+  }
+  
+  .offcanvas .btn-close {
+    background-color: transparent; /* Transparent close button */
+    border: none; /* Remove border */
+    font-size: 1.5rem; /* Larger close button font */
+  }
+  
+  .offcanvas .container {
+    padding: 20px; /* Padding for the container */
+  }
+  
+  .offcanvas  .img-fluid {
+    border-radius: 10px; /* Rounded corners for the image */
+    max-width: 80%; /* Ensures the image does not exceed its container's width */
+    height: auto;
+    
+  }
+  
+  .offcanvas .price {
+    font-size: 1.2rem; /* Slightly larger font for price */
+    color: #E59A59; /* Matching price color */
+  }
+  
+  .offcanvas .variant-select {
+    width: 100%; /* Full width for select dropdown */
+    padding: 10px; /* Padding for select */
+    border: 1px solid #ced4da; /* Border for select */
+    border-radius: 5px; /* Rounded corners for select */
+    margin-bottom: 20px; /* Spacing below select */
+  }
+  
+  .offcanvas .btn-primary {
+    background-color: #E59A59; /* Primary button color */
+    color: white; /* Button text color */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Padding for button */
+    border-radius: 5px; /* Rounded corners for button */
+    transition: background-color 0.3s; /* Transition for hover effect */
+  }
+  
+  .offcanvas .btn-primary:hover {
+    background-color: #d48a4b; /* Darker shade on hover */
+  }
+  
+  .offcanvas  hr {
+    border: 1px solid #dee2e6; /* Subtle line for separation */
+  }
+  
 
 
 

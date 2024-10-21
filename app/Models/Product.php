@@ -27,6 +27,10 @@ class Product extends Model
 
     public $translatable = ['name', 'description', 'ingredients', 'how_to_prepare'];
 
+    protected $casts = [
+        'options_ids' => 'array',
+    ];
+
     public function category()
     {
         return $this->belongsTo(Category::class);

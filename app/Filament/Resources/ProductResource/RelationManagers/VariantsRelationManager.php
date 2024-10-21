@@ -70,7 +70,7 @@ class VariantsRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('product_id')
             ->columns([
-                Tables\Columns\TextColumn::make('sub_options_names')
+                Tables\Columns\TextColumn::make('name')
                     ->label(__('filament.SubOptions'))
                     ->searchable(),
 
@@ -92,19 +92,24 @@ class VariantsRelationManager extends RelationManager
                 ->using(function (array $data, string  $model)  {
                 
                     foreach($data['Variants'] as $variant){
-                        $sub_options=[];
-                        foreach($variant['Options'] as $option){
-                            array_push($sub_options, (int)$option['sub_option']);
-                        }
+                        $sub_options=[]; $options = [];
 
                         $price = $variant['is_same_price'] ? null : $variant['price'];
                          $m = $model::create([
                             'product_id' => $this->getOwnerRecord()->id,
-                            'sub_options_ids' => json_encode($sub_options),
+                            //'sub_options_ids' => json_encode($sub_options),
                             'quantity' => $variant['quantity'],
                             'price' => $price,
                             'is_same_price' => $variant['is_same_price']
                         ]);
+                        foreach($variant['Options'] as $option){
+                            array_push($options, (int)$option['option']);
+                            $m->subOptions()->syncWithoutDetaching((int)$option['sub_option']);
+                        }
+                        
+                        $product = \App\Models\Product::find($this->getOwnerRecord()->id);
+                        $product['options_ids'] = $options;
+                        $product->save();
                     }
                     return $m;
                 }),
