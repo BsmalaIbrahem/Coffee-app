@@ -50,7 +50,7 @@
         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
           <a class="dropdown-item" href="#" type="button">Orders</a>
           <a class="dropdown-item" href="{{route('wishlists')}}" type="button">Wishlists</a>
-          <a class="dropdown-item" type="button">Profile</a>
+          <a class="dropdown-item" href="{{route('profile.edit')}}" type="button">Profile</a>
           <hr>
           <form action="{{route('logout')}}" method="POST">
             @csrf

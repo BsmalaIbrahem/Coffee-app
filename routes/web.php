@@ -6,6 +6,7 @@ use App\Http\Controllers\Web\ContactUsController;
 use App\Http\Controllers\Web\ProductController;
 use App\Http\Controllers\Web\VariantController; 
 use App\Http\Controllers\Web\WishlistController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
