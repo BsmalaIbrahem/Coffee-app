@@ -44,9 +44,15 @@
                       @else
                         {{$categories[$i]->products[$j]['price']}} EG
                       @endif
-                    <i class="h3 favorite-icon" data-id="{{$categories[$i]->products[$j]['id']}}">
-                      <span class="mdi mdi-heart-outline"></span>
-                    </i>
+                      @if(!$categories[$i]->products[$j]['wishlisted'])
+                        <i class="h3 favorite-icon" data-id="{{$categories[$i]->products[$j]['id']}}" onclick="toggleFavorite(this)">
+                          <span class="mdi mdi-heart-outline"></span>
+                        </i>
+                      @else
+                        <i class="h3 destroy-favorite-icon" data-id="{{$categories[$i]->products[$j]['id']}}" onclick="toggleFavorite(this)">
+                          <span class="mdi mdi-heart"></span>
+                        </i>
+                      @endif
                   </p>
                   <div style="text-align:center;">
                     <button class="btn btn-light incrementView" data-bs-toggle="offcanvas" data-bs-target="#pro{{$categories[$i]->products[$j]['id']}}"  data-product-id="{{ $categories[$i]->products[$j]['id']}}">Quick View</button>
@@ -212,6 +218,45 @@
                 }
             });
         });
+
+        $('.destroy-favorite-icon').on('click', function() {
+            const productId = $(this).data('id');
+
+            $.ajax({
+                url: '/wishlist/'+productId, // Adjust to your route
+                method: 'DELETE',
+                data: {
+                    _token: '{{ csrf_token() }}' // Include CSRF token
+                },
+                success: function(response) {
+                    // Handle success response (e.g., change icon)
+                    console.log(response);
+                },
+                error: function(xhr) {
+                    // Handle error response
+                    console.error(xhr.responseText);
+                }
+            });
+        });
     });
+
+    function toggleFavorite(element) {
+      const isAuthenticated = @json(auth()->check());
+
+        if (!isAuthenticated) {
+            // Redirect to the login page
+            window.location.href = '{{ route("login") }}'; // Adjust the route name as necessary
+            return;
+        }
+        
+        const icon = element.querySelector('span');
+        if (icon.classList.contains('mdi-heart-outline')) {
+            icon.classList.remove('mdi-heart-outline');
+            icon.classList.add('mdi-heart');
+        } else {
+            icon.classList.remove('mdi-heart');
+            icon.classList.add('mdi-heart-outline');
+        }
+    }
 </script>
 

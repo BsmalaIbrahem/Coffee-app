@@ -28,4 +28,10 @@ class WishlistController extends Controller
         $this->service->store($request->all());
         return response(['message' => 'success']);
     }
+
+    public function destroy($id)
+    {
+        $this->service->destroy($id);
+        return response(['message' => 'success']);
+    }
 }

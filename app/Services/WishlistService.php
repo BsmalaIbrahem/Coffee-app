@@ -18,4 +18,10 @@ class WishlistService extends BaseService
             'product_id' => $data['product_id'],
         ]);
     }
+
+    public function destroy($id)
+    {
+        $wishlist = $this->model()::find($id);
+        $wishlist->delete();
+    }
 }

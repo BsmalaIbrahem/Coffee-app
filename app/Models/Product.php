@@ -27,10 +27,11 @@ class Product extends Model
 
     public $translatable = ['name', 'description', 'ingredients', 'how_to_prepare'];
 
-    protected $appends = ['price_after_discount'];
+    protected $appends = ['price_after_discount', 'wishlisted'];
 
     protected $casts = [
         'options_ids' => 'array',
+        'wishlisted' => 'boolean',
     ];
 
     public function category()
@@ -69,4 +70,15 @@ class Product extends Model
         }
         return 0;
     }
+
+    public function getWishlistedAttribute()
+    {
+        if(auth()->check()){
+            $wishlist = \App\Models\Wishlist::where('product_id', $this->id)->where('user_id' , auth()->user()->id)->first();
+            if($wishlist)
+                return true;
+        }
+        return false;
+    }
 }
+
