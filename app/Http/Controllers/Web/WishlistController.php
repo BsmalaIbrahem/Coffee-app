@@ -18,9 +18,9 @@ class WishlistController extends Controller
     {
         $wishlists = $this->service->get(function($q){
             $q->where('user_id', auth()->user()->id);
-        }, true, ['products']);
+        }, true, ['product']);
         
-        return view('wishlist');
+        return view('wishlist', ['wishlists' => $wishlists]);
     }
 
     public function store(Request $request)

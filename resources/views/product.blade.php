@@ -81,8 +81,16 @@
                             @else
                                 {{$product['price']}} EG
                             @endif
-                            <i class="h3"><span class="mdi mdi-heart-outline"></span></i>
-                        </p>
+                            @if(!$product['wishlisted'])
+                                <i class="h3 favorite-icon" data-id="{{$product['id']}}" onclick="toggleFavorite(this)">
+                                  <span class="mdi mdi-heart-outline"></span>
+                                </i>
+                            @else
+                                <i class="h3 destroy-favorite-icon" data-id="{{$product['id']}}" onclick="toggleFavorite(this)">
+                                 <span class="mdi mdi-heart"></span>
+                                </i>
+                            @endif
+                            </p>
                         <div style="text-align:center;">
                         <button class="btn btn-light" data-bs-toggle="offcanvas"  data-bs-target="#pro{{$product['id']}}"  data-product-id="{{$product['id']}}">Quick View</button>
                         </div>
@@ -143,88 +151,6 @@
   </section>
 </section>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-  $(document).ready(function() {
-    $('.incrementView').click(function() {
-      var productId = $(this).data('product-id'); // Get product ID
-
-      $.ajax({
-        url: '/products/increment-view/'+productId, // Replace with your route
-        type: 'get',
-        success: function(response) {
-          // Handle success (e.g., show a success message)
-          //console.log(response);
-          //alert('View count incremented successfully!');
-        },
-        error: function(xhr) {
-          // Handle error
-          console.error(xhr);
-          alert(xhr);
-        }
-      });
-    });
-  });
-</script>
-@php $locale = app()->getLocale(); @endphp
-<script>
-    $(document).ready(function() {
-        const locale = '{{ $locale }}';
-        function fetchVariantDetails(variantId) {
-            if (variantId) {
-                $.ajax({
-                    url: `/variant/${variantId}`,
-                    method: 'GET',
-                    success: function(response) {
-                        const variant = response.data;
-                        let variantDetails = '#' + variant.product_id;
-                        let detailsHtml = ``;
-                        let variantPrice = '';
-                        if(variant && variant?.price_after_discount > 0){
-                          //style="text-decoration: line-through;"
-                          variantPrice += '<del style="text-decoration: line-through;">'
-                          variantPrice += variant.price + ' EG ';
-                          variantPrice += '</del>';
-                          variantPrice += variant.price_after_discount + ' EG';
-                        }else{
-                          variantPrice += variant.price + ' EG' ?? variant.product.price + ' EG';
-                        }
-
-                        if (variant.sub_options && variant.sub_options.length) {
-                            detailsHtml += '<ul>';
-                            variant.sub_options.forEach(subOption => {
-                                detailsHtml += `<li>${subOption.option.name[locale]} : ${subOption.name[locale]}</li>`;
-                            });
-                            detailsHtml += '</ul>';
-                        }
-
-                        $('.price'+variant.product_id).html(variantPrice);
-                        $(variantDetails).html(detailsHtml);
-                        //$('#product-price').html(variant.price);
-                    },
-                    error: function() {
-                      
-                        $(variantDetails).html('<p>Error fetching variant details.</p>');
-                    }
-                });
-            } else {
-                $(variantDetails).empty();
-            }
-        }
-
-        // Fetch details for the default selected product on page load
-        $('.variant-select').change(function() {
-            const variantId = $(this).val();
-            const productId = $(this).data('product-id');
-            const detailsContainer = $(this).closest('.offcanvas');
-            fetchVariantDetails(variantId, productId, detailsContainer);
-        });
-
-        // Trigger change event on page load for all variant selects
-        $('.variant-select').each(function() {
-            $(this).change();
-        });
-    });
-</script>
+@include('partials.scriptActions');
 
 @include('partials.footer')

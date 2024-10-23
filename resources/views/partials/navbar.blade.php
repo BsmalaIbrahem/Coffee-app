@@ -49,7 +49,7 @@
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
           <a class="dropdown-item" href="#" type="button">Orders</a>
-          <a class="dropdown-item" type="button">Favourites</a>
+          <a class="dropdown-item" href="{{route('wishlists')}}" type="button">Wishlists</a>
           <a class="dropdown-item" type="button">Profile</a>
           <hr>
           <form action="{{route('logout')}}" method="POST">

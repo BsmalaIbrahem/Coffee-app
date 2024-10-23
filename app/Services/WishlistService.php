@@ -21,7 +21,7 @@ class WishlistService extends BaseService
 
     public function destroy($id)
     {
-        $wishlist = $this->model()::find($id);
+        $wishlist = $this->model()::where('product_id', $id)->first();
         $wishlist->delete();
     }
 }
