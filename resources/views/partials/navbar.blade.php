@@ -38,9 +38,28 @@
       <a href="cart.html">
         <span class="mdi mdi-cart-outline"></span>
       </a>
-      <a href="login.html">
-        <span class="mdi mdi-account-outline"></span>
-      </a>
+      @if(!auth()->check())
+        <a href="{{route('login')}}">
+          <span class="mdi mdi-account-outline"></span>
+        </a>
+      @else
+      <div class="dropdown">
+        <button class="btn" style="padding:0;" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="mdi mdi-account-outline" style="font-size:30px"></span>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <a class="dropdown-item" href="#" type="button">Orders</a>
+          <a class="dropdown-item" type="button">Favourites</a>
+          <a class="dropdown-item" type="button">Profile</a>
+          <hr>
+          <form action="{{route('logout')}}" method="POST">
+            @csrf
+            <button class="dropdown-item" type="submit">Logout</button>
+          </form>
+        </div>
+      </div>
+
+      @endif
       @if(session('language') == 'en' || !session('language'))
         <a href="{{route('changeLanguage')}}">
           <span class="mdi mdi-abjad-arabic"></span>
@@ -59,3 +78,7 @@
         <img src="images/logo.png">
   </a>
 </nav>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

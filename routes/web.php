@@ -21,6 +21,17 @@ Route::controller(HomeController::class)->group(function(){
     Route::get('changeLanguage', 'changeLanguage')->name('changeLanguage');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+
 Route::prefix('products')->controller(ProductController::class)->group(function(){
     Route::get('increment-view/{id}', 'incrementViews');
     Route::get('/', 'index')->name('get-product');
@@ -41,3 +52,5 @@ Route::get('/t', function(){
 });
 
 Route::get('variants/{id}', [VariantController::Class, 'get']);
+
+require __DIR__.'/auth.php';
