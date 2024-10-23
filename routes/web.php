@@ -5,6 +5,7 @@ use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\ContactUsController;
 use App\Http\Controllers\Web\ProductController;
 use App\Http\Controllers\Web\VariantController; 
+use App\Http\Controllers\Web\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::controller(WishlistController::class)->group(function(){
+        Route::get('wishlists', 'index')->name('wishlists');
+        Route::post('wishlist', 'store')->name('add-wishlist');
+    });
 });
 
 

@@ -44,7 +44,9 @@
                       @else
                         {{$categories[$i]->products[$j]['price']}} EG
                       @endif
-                    <i class="h3"><span class="mdi mdi-heart-outline"></span></i>
+                    <i class="h3 favorite-icon" data-id="{{$categories[$i]->products[$j]['id']}}">
+                      <span class="mdi mdi-heart-outline"></span>
+                    </i>
                   </p>
                   <div style="text-align:center;">
                     <button class="btn btn-light incrementView" data-bs-toggle="offcanvas" data-bs-target="#pro{{$categories[$i]->products[$j]['id']}}"  data-product-id="{{ $categories[$i]->products[$j]['id']}}">Quick View</button>
@@ -188,6 +190,27 @@
         // Trigger change event on page load for all variant selects
         $('.variant-select').each(function() {
             $(this).change();
+        });
+
+        $('.favorite-icon').on('click', function() {
+            const productId = $(this).data('id');
+
+            $.ajax({
+                url: '{{ route('add-wishlist') }}', // Adjust to your route
+                method: 'POST',
+                data: {
+                    product_id: productId,
+                    _token: '{{ csrf_token() }}' // Include CSRF token
+                },
+                success: function(response) {
+                    // Handle success response (e.g., change icon)
+                    console.log(response);
+                },
+                error: function(xhr) {
+                    // Handle error response
+                    console.error(xhr.responseText);
+                }
+            });
         });
     });
 </script>

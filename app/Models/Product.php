@@ -48,6 +48,11 @@ class Product extends Model
         return $this->morphMany('App\Models\OfferedItem', 'offeredItemable');
     }
 
+    public function wishlists()
+    {
+        return $this->hasMany(Wishlist::class);
+    }
+
     public function getPriceAfterDiscountAttribute()
     {
         $offers = $this->offers;
