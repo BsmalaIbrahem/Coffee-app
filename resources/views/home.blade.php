@@ -89,7 +89,7 @@
                     <p style="text-align:justify;">{{$categories[$i]->products[$j]['description']}}</p>
                     <hr>
                     @if(count($categories[$i]->products[$j]['variants']) > 0)
-                      <select class="variant-select" >
+                      <select class="variant-select" id="variant-select-{{$categories[$i]->products[$j]['id']}}">
                         @foreach($categories[$i]->products[$j]['variants'] as $variant)
                             <option value="{{$variant['id']}}" {{ $loop->first ? 'selected' : '' }}>{{$variant['name']}}</option>
                         @endforeach
@@ -98,7 +98,12 @@
                     @endif
                     <hr>
                     <div style="text-align:center; margin-top:50px;">
-                      <button class="btn btn-primary" style="background-color:#E59A59; color:white; border:3px solid #E59A59;">Add to Cart</button>
+                      <button class="btn btn-primary"
+                          onclick="addToCart({{ $categories[$i]->products[$j]['id'] }})"  
+                          style="background-color:#E59A59; color:white; border:3px solid #E59A59;"
+                          >
+                          Add to Cart
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -118,3 +123,28 @@
 
 @include('partials.scriptActions');
 
+
+<script>
+function addToCart(productId) {
+    const variantSelect = document.getElementById('variant-select-' + productId);
+    const selectedVariantId = variantSelect.options[variantSelect.selectedIndex].value;
+    
+    $.ajax({
+        url: '/cart/add-product', // Adjust to your route
+        method: 'POST',
+        data: {
+            product_id: productId,
+            variant_id: selectedVariantId,
+            _token: '{{ csrf_token() }}' // Include CSRF token
+        },
+        success: function(response) {
+            // Handle success response (e.g., change icon)
+            alert('Product added to cart!');
+        },
+        error: function(xhr) {
+            // Handle error response
+            console.error(xhr.responseText);
+        }
+    });
+}
+</script>

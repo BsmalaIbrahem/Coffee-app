@@ -13,9 +13,17 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use App\Http\Requests\Auth\RegisterRequest;
+use App\Services\CartService;
 
 class RegisteredUserController extends Controller
 {
+    private $cartService;
+
+    public function __construct(CartService $service)
+    {
+        $this->cartService = $service;
+    }
+
     /**
      * Display the registration view.
      */
@@ -31,6 +39,8 @@ class RegisteredUserController extends Controller
      */
     public function store(RegisterRequest $request): RedirectResponse
     {
+        $cart = $this->cartService->find();
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -40,6 +50,8 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+
+        $this->cartService->addCartToUser($cart);
 
         return redirect(RouteServiceProvider::HOME);
     }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Web\ProductController;
 use App\Http\Controllers\Web\VariantController; 
 use App\Http\Controllers\Web\WishlistController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Web\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,10 @@ Route::middleware('auth')->group(function () {
     });
 });
 
+Route::prefix('cart')->controller(CartController::Class)->group(function(){
+    Route::get('/', 'get');
+    Route::post('add-product', 'addProduct')->name('add-product');
+});
 
 Route::prefix('products')->controller(ProductController::class)->group(function(){
     Route::get('increment-view/{id}', 'incrementViews');

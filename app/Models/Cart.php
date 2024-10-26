@@ -11,39 +11,17 @@ class Cart extends Model
 
     protected $fillable = [
         'user_id', 
-        'phone_id', 
-        'address_id', 
-        'total', 
-        'sub_total', 
-        'delivery_fee',
+        'session',
         'quantity',
     ];
-
-    protected $appends = ['address_details'];
-
-    public function getAddressDetailsAttribute()
-    {
-        $address = \App\Models\Address::where('id', $this->address_id)->with('city')->first();
-
-        return 'city : ' .$address['city']['name'] . 
-                ' , street name : ' . $address['street_name'] .
-                ' , building: ' . $address['building'] . 
-                ' , district : ' . $address['district'] . 
-                ' , nearest_landmark : ' . $address['nearest_landmark'];
-    }
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function phone()
+    public function products()
     {
-        return $this->belongsTo(Phone::class);
-    }
-
-    public function address()
-    {
-        return $this->belongsTo(Address::class);
+        return $this->hasMany(CartProduct::class);
     }
 }
