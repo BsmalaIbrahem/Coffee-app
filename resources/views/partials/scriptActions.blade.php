@@ -155,7 +155,7 @@
             },
             success: function(response) {
                 // Handle success response (e.g., change icon)
-                alert('Product added to cart!');
+                window.location.href = '{{ route("cart") }}'; 
             },
             error: function(xhr) {
                 // Handle error response
