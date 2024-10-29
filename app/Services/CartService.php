@@ -61,16 +61,16 @@ class CartService extends BaseService
     public function storeNewCartProduct($data, $cart_id=null)
     {
         return CartProduct::create([
-            'cart_id' => $cart_id ?? $this->cart_id,
+            'cart_id' => $cart_id ?? $this->find()['id'],
             'product_id' => $data['product_id'],
             'variant_id' => $data['variant_id'] ?? null,
             'quantity' => $data['quantity'] ?? 1,
         ]);
     }
 
-    public function incrementProductQuantity($data)
+    public function incrementProductQuantity($data, $cart_products_id=null)
     {
-        $cart_product = $this->getCartProduct($data);
+        $cart_product = $this->getCartProduct($data, null, $cart_products_id);
         $cart_product->quantity = ($cart_product->quantity) + 1;
         $cart_product->save();
 
@@ -83,11 +83,11 @@ class CartService extends BaseService
         $cart->save();
     }
 
-    public function decrementProductQuantity($data)
+    public function decrementProductQuantity($data, $cart_products_id=null)
     {
         $this->decrementCartQuantity();
 
-        $cart_product = $this->getCartProduct($data);
+        $cart_product = $this->getCartProduct($data, null, $cart_products_id);
         $cart_product->quantity = ($cart_product->quantity) - 1;
         $cart_product->save();
 
@@ -104,9 +104,12 @@ class CartService extends BaseService
     }
     
 
-    public function getCartProduct($data, $cart_id = null)
+    public function getCartProduct($data = null, $cart_id = null, $id=null)
     {
-        return CartProduct::where('cart_id', $cart_id ?? $this->cart_id)
+        if($id){
+            return CartProduct::where('id', $id)->first();
+        }
+        return CartProduct::where('cart_id', $cart_id ?? $this->find()['id'])
                             ->where('product_id',$data["product_id"])
                             ->where('variant_id', $data['variant_id'])
                             ->first();

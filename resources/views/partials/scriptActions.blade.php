@@ -140,4 +140,27 @@
             icon.classList.add('mdi-heart-outline');
         }
     }
+
+    function addToCart(productId) {
+        const variantSelect = document.getElementById('variant-select-' + productId);
+        const selectedVariantId = variantSelect.options[variantSelect.selectedIndex].value;
+        
+        $.ajax({
+            url: '/cart/add-product', // Adjust to your route
+            method: 'POST',
+            data: {
+                product_id: productId,
+                variant_id: selectedVariantId,
+                _token: '{{ csrf_token() }}' // Include CSRF token
+            },
+            success: function(response) {
+                // Handle success response (e.g., change icon)
+                alert('Product added to cart!');
+            },
+            error: function(xhr) {
+                // Handle error response
+                console.error(xhr.responseText);
+            }
+        });
+    }
 </script>

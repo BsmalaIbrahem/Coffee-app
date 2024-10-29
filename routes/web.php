@@ -41,8 +41,11 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::prefix('cart')->controller(CartController::Class)->group(function(){
-    Route::get('/', 'get');
+    Route::get('/', 'get')->name('cart');
     Route::post('add-product', 'addProduct')->name('add-product');
+    Route::delete('delete-product/{product_id}', 'removeProduct')->name('removeProduct');
+    Route::patch('increment-quantity','incrementQuantity')->name('increment-quantity');
+    Route::patch('decrement-quantity', 'decrementQuantity')->name('decrement-quantity');
 });
 
 Route::prefix('products')->controller(ProductController::class)->group(function(){

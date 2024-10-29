@@ -35,7 +35,7 @@
     </form>
 
     <div class="user-logo">
-      <a href="cart.html">
+      <a href="{{route('cart')}}">
         <span class="mdi mdi-cart-outline"></span>
       </a>
       @if(!auth()->check())

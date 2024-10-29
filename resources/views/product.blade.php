@@ -127,7 +127,7 @@
                             <p style="text-align:justify;">{{$product['description']}}</p>
                             <hr>
                             @if(count($product['variants']) > 0)
-                            <select class="variant-select" >
+                            <select class="variant-select" id="variant-select-{{$product['id']}}">
                                 @foreach($product['variants'] as $variant)
                                     <option value="{{$variant['id']}}" {{ $loop->first ? 'selected' : '' }}>{{$variant['name']}}</option>
                                 @endforeach
@@ -136,7 +136,13 @@
                             @endif
                             <hr>
                             <div style="text-align:center; margin-top:50px;">
-                            <button class="btn btn-primary" style="background-color:#E59A59; color:white; border:3px solid #E59A59;">Add to Cart</button>
+                            <button 
+                                class="btn btn-primary" 
+                                onclick="addToCart({{$product['id']}})"  
+                                style="background-color:#E59A59; color:white; border:3px solid #E59A59;"
+                                >
+                                Add to Cart
+                            </button>
                             </div>
                         </div>
                     </div>

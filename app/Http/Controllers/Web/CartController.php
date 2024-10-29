@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\CartService;
+use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
@@ -17,7 +18,11 @@ class CartController extends Controller
 
     public function get()
     {
-        return $this->service->find();
+        $cart = $this->service->get(function($q){
+            $q->where('user_id', auth()?->user()?->id)->orWhere('session', Session::getId());
+        }, false, ['products', 'products.product', 'products.variant', 'products.variant.subOptions'], false, true);
+
+        return view('cart', ['cart' => $cart]);
     }
 
     public function addProduct(Request $request)
@@ -26,13 +31,23 @@ class CartController extends Controller
         return response(['success' => true]);
     }
 
-    public function removeProduct(Request $request)
+    public function removeProduct($product_id)
     {
-        //
+        $this->service->deleteCartProduct($product_id);
+        return redirect()->route('cart');
     }
 
-    public function destroy($id)
+    public function incrementQuantity(Request $request)
     {
-        //
+        $this->service->incrementProductQuantity(null, $request['cart_product_id']);
+        $this->service->incrementCartQuantity();
+        return response(['sucess' => true]);
+    }
+
+    public function decrementQuantity(Request $request)
+    {
+        $this->service->decrementProductQuantity(null, $request['cart_product_id']);
+        
+        return response(['sucess' => true]);
     }
 }

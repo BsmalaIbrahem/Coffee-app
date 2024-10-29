@@ -1,6 +1,6 @@
 <footer id="footer">
   <div class="f-content">
-    <div class="f-logo"><img src="images/logo.png" alt=""></div>
+    <div class="f-logo"><img src="{{asset('images/logo.png')}}" alt=""></div>
     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iure illo, facilis fugit quisquam nihil ipsa.</p>
     @foreach($allSocialMedia as $SocialMedia)
         @if($SocialMedia['type'] == 'Instagram')

@@ -10,6 +10,7 @@ class CartProduct extends Model
     use HasFactory;
 
     protected $fillable  = ['cart_id', 'product_id', 'variant_id', 'quantity'];
+    protected $appends = ['price', 'price_after_discount'];
 
     public function cart()
     {
@@ -24,5 +25,15 @@ class CartProduct extends Model
     public function variant()
     {
         return $this->belongsTo(Variant::class);
+    }
+
+    public function getPriceAttribute()
+    {
+        return $this->variant_id ? $this->variant['price'] : $this->product['price'];
+    }
+
+    public function getPriceAfterDiscountAttribute()
+    {
+        return $this->variant_id ? $this->variant['price_after_discount'] : $this->product['price_after_discount'];
     }
 }
