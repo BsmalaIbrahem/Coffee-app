@@ -13,7 +13,7 @@
       @endforeach
       
       <li class="nav-item">
-        <a href="#" class="nav-link">Contact us</a>
+        <a href="{{route('home')}}/#contact" class="nav-link">Contact us</a>
       </li>
     </ul>
 
