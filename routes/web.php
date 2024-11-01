@@ -9,7 +9,7 @@ use App\Http\Controllers\Web\WishlistController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Web\CartController;
 use App\Http\Controllers\Web\CheckoutConroller;
-
+use App\Http\Controllers\Web\OrderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,6 +46,11 @@ Route::middleware('auth')->group(function () {
         Route::get('checkout', 'get')->name('checkout');
         Route::post('checkout', 'checkout');
     });
+
+    Route::controller(OrderController::class)->group(function(){
+        Route::get('orders', 'index')->name('orders');
+        Route::get('order/{id}', 'get')->name('order');
+    });
     
 });
 
@@ -67,9 +72,5 @@ Route::get('variant/{id}', [VariantController::Class, 'get']);
 Route::post('contact-us', [ContactUsController::class, 'create'])->name('contactUs');
 
 Route::get('variants/{id}', [VariantController::Class, 'get']);
-
-Route::get('/t', function(){
-    return view('mails.order');
-});
 
 require __DIR__.'/auth.php';
