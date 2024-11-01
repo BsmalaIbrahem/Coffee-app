@@ -53,6 +53,6 @@ class RegisteredUserController extends Controller
 
         $this->cartService->addCartToUser($cart);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect()->route('cart');
     }
 }

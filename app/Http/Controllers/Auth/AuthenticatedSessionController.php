@@ -41,7 +41,7 @@ class AuthenticatedSessionController extends Controller
 
         $this->cartService->addCartToUser($cart);
 
-        return redirect()->route('home');
+        return redirect()->route('cart');
     }
 
     /**

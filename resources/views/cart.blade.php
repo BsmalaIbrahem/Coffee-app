@@ -171,7 +171,7 @@
         <div class="col-md-6 text-end">
             <p class="subtotal">Subtotal: <span id="subtotal">458</span> EG</p>
             <p class="text-muted">Taxes and shipping calculated at checkout</p>
-            <button class="btn btn-dark btn-lg">CHECK OUT</button>
+            <a href="{{route('checkout')}}" class="btn btn-dark btn-lg">CHECK OUT</a>
         </div>
         </div>
     </div>

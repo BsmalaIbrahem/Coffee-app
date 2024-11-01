@@ -109,6 +109,9 @@ class CartService extends BaseService
         if($id){
             return CartProduct::where('id', $id)->first();
         }
+        if($cart_id && !$data){
+            return CartProduct::where('cart_id', $cart_id)->get();
+        }
         return CartProduct::where('cart_id', $cart_id ?? $this->find()['id'])
                             ->where('product_id',$data["product_id"])
                             ->where('variant_id', $data['variant_id'])

@@ -15,6 +15,8 @@ class Cart extends Model
         'quantity',
     ];
 
+    protected $appends = ['total'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -23,5 +25,10 @@ class Cart extends Model
     public function products()
     {
         return $this->hasMany(CartProduct::class);
+    }
+
+    public function getTotalAttribute()
+    {
+        return $this->products->sum('total');
     }
 }

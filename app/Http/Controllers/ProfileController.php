@@ -8,9 +8,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Services\AddressService;
+use App\Http\Requests\Address\AddRequest;
+use App\Services\PhoneService;
+use App\Http\Requests\Phone\AddRequest as AddPhoneRequest;
 
 class ProfileController extends Controller
 {
+    private $addressService; private $phoneService;
+
+    public function __construct(AddressService $addressService, PhoneService $phoneService)
+    {
+        $this->addressService = $addressService;
+        $this->phoneService = $phoneService;
+    }
     /**
      * Display the user's profile form.
      */
@@ -56,5 +67,17 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function addAddress(AddRequest $request)
+    {
+        $this->addressService->addAddress($request->all());
+        return redirect()->route('checkout');
+    }
+
+    public function addPhoneNumber(AddPhoneRequest $request)
+    {
+        $this->phoneService->add($request->all());
+        return redirect()->route('checkout');
     }
 }

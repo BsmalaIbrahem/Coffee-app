@@ -19,6 +19,8 @@ class Address extends Model
         'address_type'
     ];
 
+    protected $appends = ['details'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -28,4 +30,11 @@ class Address extends Model
     {
         return $this->belongsTo(City::class);
     }
+
+    public function getDetailsAttribute()
+    {
+        return $this->building . ' '.$this->street_name . ' '. $this->nearest_landmark. ' '. $this->district. ' '. $this->city['name'];
+    }
+
+
 }
