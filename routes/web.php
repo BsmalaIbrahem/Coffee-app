@@ -10,6 +10,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Web\CartController;
 use App\Http\Controllers\Web\CheckoutConroller;
 use App\Http\Controllers\Web\OrderController;
+use App\Http\Controllers\Web\DiscountController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -72,5 +73,7 @@ Route::get('variant/{id}', [VariantController::Class, 'get']);
 Route::post('contact-us', [ContactUsController::class, 'create'])->name('contactUs');
 
 Route::get('variants/{id}', [VariantController::Class, 'get']);
+
+Route::get('discount-products', [DiscountController::class, 'index'])->name('discount-products');
 
 require __DIR__.'/auth.php';

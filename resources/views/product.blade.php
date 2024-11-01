@@ -51,6 +51,7 @@
 
   <div class="d-flex justify-content-center">
         <div class="select-container">
+            @if(@$options)
             @foreach($options as $option)
                 <select class="form-select">
                     @foreach($option->subOptions as $sub_option)
@@ -61,6 +62,7 @@
                     @endforeach
                 </select>
             @endforeach
+            @endif
         </div>
   </div>
 
