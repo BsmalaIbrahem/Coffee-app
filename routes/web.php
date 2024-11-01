@@ -68,4 +68,8 @@ Route::post('contact-us', [ContactUsController::class, 'create'])->name('contact
 
 Route::get('variants/{id}', [VariantController::Class, 'get']);
 
+Route::get('/t', function(){
+    return view('mails.order');
+});
+
 require __DIR__.'/auth.php';

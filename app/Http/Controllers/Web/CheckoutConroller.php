@@ -10,6 +10,7 @@ use App\Services\CartService;
 use App\Services\CityService;
 use App\Services\OrderService;
 use App\Http\Requests\CheckoutRequest;
+use App\Jobs\PlaceOrder;
 
 class CheckoutConroller extends Controller
 {
@@ -60,8 +61,8 @@ class CheckoutConroller extends Controller
 
     public function checkout(CheckoutRequest $request)
     {
-        $this->orderService->placeOrder($request->all(), $this->cartService);
-        //send email to user & admin
+        $order = $this->orderService->placeOrder($request->all(), $this->cartService);
+        PlaceOrder::dispatch($order);
         return redirect()->route('cart');
     }
 }

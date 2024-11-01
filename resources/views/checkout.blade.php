@@ -116,8 +116,8 @@
     <!-- Place Order Button -->
      <form action="{{route('checkout')}}" method="post">
         @csrf
-        <input type="text" name="phone_id" value="{{$phone['id']}}" hidden>
-        <input type="text" name="address_id" value="{{$address['id']}}" hidden>
+        <input type="text" name="phone_id" value="{{$phone['id'] ??''}}" hidden>
+        <input type="text" name="address_id" value="{{$address['id'] ?? ''}}" hidden>
         <button class="btn btn-checkout">PLACE ORDER</button>
      </form>
     

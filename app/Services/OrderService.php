@@ -30,6 +30,7 @@ class OrderService extends BaseService
             $cartService->destory($cart['id']);
 
             DB::commit();
+            return $order;
         }catch(err){
             DB::rollBack();
         }
@@ -39,7 +40,7 @@ class OrderService extends BaseService
     {
         return $this->model()::create([
             'user_id' => auth()->user()->id,
-            'reference_id' => Str::random(10),
+            'reference_id' => Str::random(),
             'total' => $cart['total'],
             'shipping_fee' => 30,
             'sub_total' => $cart['total'] + 30,
