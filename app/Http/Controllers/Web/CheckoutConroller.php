@@ -63,6 +63,6 @@ class CheckoutConroller extends Controller
     {
         $order = $this->orderService->placeOrder($request->all(), $this->cartService);
         PlaceOrder::dispatch($order);
-        return redirect()->route('cart');
+        return redirect()->route('order', ['id' => $order['id']]);
     }
 }
