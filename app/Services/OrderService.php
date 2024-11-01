@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class OrderService extends BaseService
 {
@@ -38,6 +39,7 @@ class OrderService extends BaseService
     {
         return $this->model()::create([
             'user_id' => auth()->user()->id,
+            'reference_id' => Str::random(10),
             'total' => $cart['total'],
             'shipping_fee' => 30,
             'sub_total' => $cart['total'] + 30,
