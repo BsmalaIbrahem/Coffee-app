@@ -71,16 +71,18 @@
                             <p style="text-align:justify;">{{$wishlist["product"]['description']}}</p>
                             <hr>
                             @if(count($wishlist["product"]['variants']) > 0)
-                            <select class="variant-select" >
+                            <select class="variant-select direction" >
                                 @foreach($wishlist["product"]['variants'] as $variant)
-                                    <option value="{{$variant['id']}}" {{ $loop->first ? 'selected' : '' }}>{{$variant['name']}}</option>
+                                    <option class="direction" value="{{$variant['id']}}" {{ $loop->first ? 'selected' : '' }}>{{$variant['name']}}</option>
                                 @endforeach
                             </select>
-                            <div id="{{$wishlist['product']['id']}}" class="subOptions"></div>
+                            <div id="{{$wishlist['product']['id']}}" class="subOptions direction"></div>
                             @endif
                             <hr>
                             <div style="text-align:center; margin-top:50px;">
-                            <button class="btn btn-primary" style="background-color:#E59A59; color:white; border:3px solid #E59A59;">Add to Cart</button>
+                            <button class="btn btn-primary" style="background-color:#E59A59; color:white; border:3px solid #E59A59;">
+                                {{__('keywords.Add_to_Cart')}}
+                            </button>
                             </div>
                         </div>
                     </div>

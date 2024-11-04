@@ -53,15 +53,15 @@
 
 <div class="container mt-5">
   <div class="cart-container">
-    <h3 class="mb-4">Shopping Cart</h3>
+    <h3 class="mb-4">{{__('keywords.Shopping_Cart')}}</h3>
 
     @if($cart)
         <!-- Cart Header -->
         <div class="row fw-bold border-bottom pb-2">
-        <div class="col-md-5">Product</div>
-        <div class="col-md-2 text-center">Price</div>
-        <div class="col-md-2 text-center">Quantity</div>
-        <div class="col-md-3 text-end">Total</div>
+        <div class="col-md-5">{{__('keywords.Product')}}</div>
+        <div class="col-md-2 text-center">{{__('keywords.Price')}}</div>
+        <div class="col-md-2 text-center">{{__('keywords.Quantity')}}</div>
+        <div class="col-md-3 text-end">{{__('keywords.Total')}}</div>
         </div>
 
         @foreach($cart['products'] as $cart_product)
@@ -110,12 +110,12 @@
                     <p style="text-align:justify;">{{$cart_product['product']['description']}}</p>
                     <hr>
                     @if(count($cart_product['product']['variants']) > 0)
-                      <select class="variant-select" id="variant-select-{{$cart_product['product']['id']}}">
+                      <select class="variant-select direction" id="variant-select-{{$cart_product['product']['id']}}">
                         @foreach($cart_product['product']['variants'] as $variant)
-                            <option value="{{$variant['id']}}" {{ $loop->first ? 'selected' : '' }}>{{$variant['name']}}</option>
+                            <option value="{{$variant['id']}} direction" {{ $loop->first ? 'selected' : '' }}>{{$variant['name']}}</option>
                         @endforeach
                       </select>
-                      <div id="{{$cart_product['product']['id']}}" class="subOptions"></div>
+                      <div id="{{$cart_product['product']['id']}}" class="subOptions direction"></div>
                     @endif
                     <hr>
                     <div style="text-align:center; margin-top:50px;">
@@ -123,7 +123,7 @@
                           onclick="addToCart({{ $cart_product['product']['id'] }})"  
                           style="background-color:#E59A59; color:white; border:3px solid #E59A59;"
                           >
-                          Add to Cart
+                          {{__('keywords.Add_to_Cart')}}
                       </button>
                     </div>
                   </div>
@@ -133,7 +133,7 @@
 
 
             @foreach($cart_product['variant']['subOptions'] as $sub_option)
-                <p class="mb-1">{{$sub_option['option']['name']}}: {{$sub_option['name']}} {{$sub_option['unit'] ?? ''}}</p>
+                <p class="mb-1 direction">{{$sub_option['option']['name']}}: {{$sub_option['name']}} {{$sub_option['unit'] ?? ''}}</p>
             @endforeach
             <form action="{{route('removeProduct', ['product_id' => $cart_product['id']])}}" method="post">
                 @csrf
@@ -169,15 +169,15 @@
             
         </div>
         <div class="col-md-6 text-end">
-            <p class="subtotal">Subtotal: <span id="subtotal">458</span> EG</p>
+            <p class="subtotal ">{{__('keywords.Subtotal')}}: <span id="subtotal directions" class="">458</span> {{__('keywords.EG')}}</p>
             <p class="text-muted">Taxes and shipping calculated at checkout</p>
-            <a href="{{route('checkout')}}" class="btn btn-dark btn-lg">CHECK OUT</a>
+            <a href="{{route('checkout')}}" class="btn btn-dark btn-lg">{{__('keywords.CHECKOUT')}}</a>
         </div>
         </div>
     </div>
 
     @else
-        <h2 class="text-center">No Products</h2>
+        <h2 class="text-center">{{__('keywords.NoProducts')}}</h2>
     @endif
 </div>
 

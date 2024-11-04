@@ -7,14 +7,14 @@
 @include('partials.footerScript')
 
 <div class="container mt-5">
-    <h2 class="mb-4">Orders</h2>
+    <h2 class="mb-4">{{__('keywords.Orders')}}</h2>
     @if(count($orders) > 0)
     <table class="table table-bordered">
         <thead class="thead-light">
             <tr>
-                <th scope="col">Order ID</th>
-                <th scope="col">Total Price</th>
-                <th scope="col">Action</th>
+                <th scope="col">{{__('keywords.OrderID')}}</th>
+                <th scope="col">{{__('keywords.Subtotal')}}</th>
+                <th scope="col">{{__('keywords.Action')}}</th>
             </tr>
         </thead>
         <tbody>
@@ -31,7 +31,7 @@
         </tbody>
     </table>
     @else
-     <h2 class="text-center">No Orders</h2>
+     <h2 class="text-center">{{__('keywords.NoOrders')}}</h2>
     @endif
 </div>
 

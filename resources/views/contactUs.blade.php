@@ -1,10 +1,10 @@
 <section class="contact" id="contact">
   <div class="heading">
-    Contact <span>us</span>
+    {{__('keywords.Contact')}} <span>{{__('keywords.us')}}</span>
   </div>
   <div class="row">
     <div class="col-md-5 py-3 py-md-0">
-      <h3>Let's Get In Touch</h3>
+      <h3>{{__('keywords.Get_Touch')}}</h3>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit nobis, modi alias suscipit molestiae amet!</p>
       @foreach($ContactMethods as $ContactMethod)
         @if($ContactMethod['type'] == 'Phone')
@@ -22,21 +22,21 @@
         @csrf
         @include('partials.validationError')
         <div class="mb-3 mt-3">
-          <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" required>
+          <input type="text" class="form-control" id="name" name="name" placeholder="{{__('keywords.Enter_Name')}}" required>
         </div>
 
         <div class="mb-3 mt-3">
-          <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
+          <input type="email" class="form-control" id="email" name="email" placeholder="{{__('keywords.Enter_Email')}}" required>
         </div>
 
         <div class="mb-3 mt-3">
-          <input type="number" class="form-control" id="number" name="phone_number" placeholder="Enter Number" required>
+          <input type="number" class="form-control" id="number" name="phone_number" placeholder="{{__('keywords.Enter_Number')}}" required>
         </div>
 
 
-         <textarea  class="form-control" id="comment" rows="5" name="message" placeholder="Enter Message" required></textarea>
+         <textarea  class="form-control" id="comment" rows="5" name="message" placeholder="{{__('keywords.Enter_Message')}}" required></textarea>
 
-         <button type="submit" class="order-btn">Send Message</button>
+         <button type="submit" class="order-btn">{{__('keywords.Send_Message')}}</button>
       </form>
     </div>
   </div>

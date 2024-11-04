@@ -22,7 +22,7 @@
       <section class="menu" id="menu">
         <h3 class="text-center">{{$categories[$i]['name']}}</h3>
         @if($i==0)
-          <h2>Delicious Coffee Is Here <i class="fa-solid fa-arrow-down"></i></h2>
+          <h2 class="direction">{{__('keywords.Delicious_Coffee_Is_Here')}} <i class="fa-solid fa-arrow-down"></i></h2>
         @endif
         <div class="row" style="margin-top: 30px;">
           @if(count($categories[$i]->products) >=3)
@@ -55,7 +55,7 @@
                       @endif
                   </p>
                   <div style="text-align:center;">
-                    <button class="btn btn-light incrementView" data-bs-toggle="offcanvas" data-bs-target="#pro{{$categories[$i]->products[$j]['id']}}"  data-product-id="{{ $categories[$i]->products[$j]['id']}}">Quick View</button>
+                    <button class="btn btn-light incrementView" data-bs-toggle="offcanvas" data-bs-target="#pro{{$categories[$i]->products[$j]['id']}}"  data-product-id="{{ $categories[$i]->products[$j]['id']}}">{{__('keywords.Quick_View')}}</button>
                   </div>
                 </div>
               </div>
@@ -89,12 +89,12 @@
                     <p style="text-align:justify;">{{$categories[$i]->products[$j]['description']}}</p>
                     <hr>
                     @if(count($categories[$i]->products[$j]['variants']) > 0)
-                      <select class="variant-select" id="variant-select-{{$categories[$i]->products[$j]['id']}}">
+                      <select class="variant-select direction" id="variant-select-{{$categories[$i]->products[$j]['id']}}">
                         @foreach($categories[$i]->products[$j]['variants'] as $variant)
-                            <option value="{{$variant['id']}}" {{ $loop->first ? 'selected' : '' }}>{{$variant['name']}}</option>
+                            <option class="direction" value="{{$variant['id']}}" {{ $loop->first ? 'selected' : '' }}>{{$variant['name']}}</option>
                         @endforeach
                       </select>
-                      <div id="{{$categories[$i]->products[$j]['id']}}" class="subOptions"></div>
+                      <div id="{{$categories[$i]->products[$j]['id']}}" class="subOptions direction"></div>
                     @endif
                     <hr>
                     <div style="text-align:center; margin-top:50px;">
@@ -102,7 +102,7 @@
                           onclick="addToCart({{ $categories[$i]->products[$j]['id'] }})"  
                           style="background-color:#E59A59; color:white; border:3px solid #E59A59;"
                           >
-                          Add to Cart
+                          {{__('keywords.Add_to_Cart')}}
                       </button>
                     </div>
                   </div>

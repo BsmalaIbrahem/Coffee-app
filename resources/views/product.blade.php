@@ -129,12 +129,12 @@
                             <p style="text-align:justify;">{{$product['description']}}</p>
                             <hr>
                             @if(count($product['variants']) > 0)
-                            <select class="variant-select" id="variant-select-{{$product['id']}}">
+                            <select class="variant-select direction" id="variant-select-{{$product['id']}}">
                                 @foreach($product['variants'] as $variant)
-                                    <option value="{{$variant['id']}}" {{ $loop->first ? 'selected' : '' }}>{{$variant['name']}}</option>
+                                    <option class="direction" value="{{$variant['id']}}" {{ $loop->first ? 'selected' : '' }}>{{$variant['name']}}</option>
                                 @endforeach
                             </select>
-                            <div id="{{$product['id']}}" class="subOptions"></div>
+                            <div id="{{$product['id']}}" class="subOptions direction"></div>
                             @endif
                             <hr>
                             <div style="text-align:center; margin-top:50px;">
@@ -143,7 +143,7 @@
                                 onclick="addToCart({{$product['id']}})"  
                                 style="background-color:#E59A59; color:white; border:3px solid #E59A59;"
                                 >
-                                Add to Cart
+                                {{__('keywords.Add_to_Cart')}}
                             </button>
                             </div>
                         </div>

@@ -1,11 +1,19 @@
-
+<style>
+  .direction{
+    @if(session('language') == 'en')
+      direction:ltr;
+    @else
+      direction:rtl;
+    @endif
+  }
+</style>
 <nav class="navbar navbar-expand-lg" id="navbar">
   
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
     <span><i class="fa-solid fa-bars"></i></span>
   </button>
   <div class="collapse navbar-collapse" id="mynavbar">
-    <ul class="navbar-nav me-auto">
+    <ul class="navbar-nav me-auto direction">
       @foreach($categories as $category)
         <li class="nav-item">
             <a href="{{route('get-product', ['category' => $category['name']])}}" class="nav-link">{{$category['name']}}</a>
@@ -13,7 +21,7 @@
       @endforeach
       
       <li class="nav-item">
-        <a href="{{route('home')}}/#contact" class="nav-link">Contact us</a>
+        <a href="{{route('home')}}/#contact" class="nav-link">{{__('keywords.ContactUS')}}</a>
       </li>
     </ul>
 
@@ -48,13 +56,13 @@
           <span class="mdi mdi-account-outline" style="font-size:30px"></span>
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-          <a class="dropdown-item" href="#" type="button">Orders</a>
-          <a class="dropdown-item" href="{{route('wishlists')}}" type="button">Wishlists</a>
-          <a class="dropdown-item" href="{{route('profile.edit')}}" type="button">Profile</a>
+          <a class="dropdown-item" href="{{route('orders')}}" type="button">{{__('keywords.Orders')}}</a>
+          <a class="dropdown-item" href="{{route('wishlists')}}" type="button">{{__('keywords.Wishlists')}}</a>
+          <a class="dropdown-item" href="{{route('profile.edit')}}" type="button">{{__('keywords.Profile')}}</a>
           <hr>
           <form action="{{route('logout')}}" method="POST">
             @csrf
-            <button class="dropdown-item" type="submit">Logout</button>
+            <button class="dropdown-item" type="submit">{{__('keywords.Logout')}}</button>
           </form>
         </div>
       </div>
