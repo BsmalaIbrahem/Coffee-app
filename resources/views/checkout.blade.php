@@ -10,10 +10,10 @@
 
 <style>
     .direction{
-        @if(session('language') == 'en')
-        text-align:left;
-        @else
+        @if(session('language') == 'ar')
         text-align:right;
+        @else
+        text-align:left;
         @endif
     }
     .order-card {

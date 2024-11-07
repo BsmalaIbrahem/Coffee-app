@@ -1,9 +1,9 @@
 <style>
   .direction{
-    @if(session('language') == 'en')
-      direction:ltr;
-    @else
+    @if(session('language') == 'ar')
       direction:rtl;
+    @else
+      direction:ltr;
     @endif
   }
 </style>
