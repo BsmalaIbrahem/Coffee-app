@@ -20,6 +20,8 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
 use Filament\SpatieLaravelTranslatablePlugin;
 use App\Filament\Pages\Dashboard;
+use Althinect\FilamentSpatieRolesPermissions\FilamentSpatieRolesPermissionsPlugin;
+use Althinect\FilamentSpatieRolesPermissions\Middleware\SyncSpatiePermissionsWithFilamentTenants;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -54,10 +56,16 @@ class AdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
-            ->plugin(SpatieLaravelTranslatablePlugin::make()->defaultLocales(['ar','en']))
+            ->plugin(
+                SpatieLaravelTranslatablePlugin::make()->defaultLocales(['ar','en']),
+                FilamentSpatieRolesPermissionsPlugin::make(),
+                )
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->tenantMiddleware([
+                SyncSpatiePermissionsWithFilamentTenants::class,
+            ], isPersistent: true);
     }
 
     public function boot(): void
