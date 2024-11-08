@@ -6,6 +6,7 @@
 @include('partials.headTags')
 @include('partials.navbar')
 @include('partials.footerScript')
+@include('partials.validationError')
 
 
 <style>
@@ -60,13 +61,13 @@
 
 <div class="order-card mt-5 direction">
     <h5 class="order-header mb-4">{{__('keywords.OrderSummary')}}</h5>
-    
+
     <!-- Product Info -->
     <div class="mb-3">
         <div class="product-details mb-1 d-flex justify-content-between mt-2">
             <span>{{__('keywords.YourAddress')}}</span>
             <button class="add-address" data-bs-toggle="offcanvas"  data-bs-target="#add" style="background:none; border:0; color:#E59A59;">
-                @if($address)    
+                @if($address)
                     {{__('keywords.UpdateAddress')}}
                 @else
                 {{__('keywords.AddAddress')}}
@@ -79,23 +80,23 @@
             @endif
         </div>
         <div class="d-flex justify-content-between mt-2">
-            <span>{{__('keywords.PhoneNumber')}} : 
+            <span>{{__('keywords.PhoneNumber')}} :
                 @if($phone)
                     {{$phone['phone']}}
                 @endif
             </span>
             <button class="edit-phone" data-bs-toggle="offcanvas"  data-bs-target="#edit" style="background:none; border:0; color:#E59A59;">
                 @if($phone)
-                {{__('keywords.EditPhone')}} 
+                {{__('keywords.EditPhone')}}
                 @else
-                {{__('keywords.AddPhone')}}  
+                {{__('keywords.AddPhone')}}
                 @endif
             </button>
         </div>
     </div>
-    
+
     <hr>
-    
+
     <!-- Subtotal and Shipping -->
     <div class="d-flex justify-content-between">
         <span>{{__('keywords.Total')}} </span>
@@ -105,21 +106,21 @@
         <span>{{__('keywords.Shipping')}}</span>
         <span class="text-muted-small">{{$shipping_fee}} {{__('keywords.EG')}}</span>
     </div>
-    
+
     <hr>
-    
+
     <!-- Total -->
     <div class="d-flex justify-content-between total-price mt-3 mb-4">
         <span>{{__('keywords.Subtotal')}}</span>
         <span>{{$cart['total'] + $shipping_fee}} {{__('keywords.EG')}}</span>
     </div>
-    
-    
+
+
     <!-- Privacy Notice -->
     <p class="text-muted text-center text-muted-small mb-4">
         Your data will be used to process your order and support your experience as per our <a href="#" class="text-decoration-none">privacy policy</a>.
     </p>
-    
+
     <!-- Place Order Button -->
      <form action="{{route('checkout')}}" method="post">
         @csrf
@@ -127,7 +128,7 @@
         <input type="text" name="address_id" value="{{$address['id'] ?? ''}}" hidden>
         <button class="btn btn-checkout">{{__('keywords.PLACEORDER')}}</button>
      </form>
-    
+
 </div>
 
 <div id="add" class="offcanvas offcanvas-top mt-5 mx-auto" style="width:450px; height:500px;">

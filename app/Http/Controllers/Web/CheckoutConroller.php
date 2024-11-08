@@ -17,9 +17,9 @@ class CheckoutConroller extends Controller
     private $addressService; private $phoneService; private $cartService; private $cityService; private $orderService;
 
     public function __construct(
-        AddressService $addressService, 
-        PhoneService $phoneService, 
-        CartService $cartService, 
+        AddressService $addressService,
+        PhoneService $phoneService,
+        CartService $cartService,
         CityService $cityService,
         OrderService $orderService
     ){
@@ -33,7 +33,7 @@ class CheckoutConroller extends Controller
     public function get()
     {
         $cities = $this->cityService->get();
-        
+
         $address = $this->addressService->get(function($q){
             $q->where('user_id', auth()->user()->id)->orderBy('id', 'desc');
         }, false, [], false, true);
@@ -54,13 +54,14 @@ class CheckoutConroller extends Controller
                 'cities'       => $cities,
                 'address'      => $address,
                 'phone'        => $phone,
-                'cart'         => $cart, 
-                'shipping_fee' => $shipping_fee, 
+                'cart'         => $cart,
+                'shipping_fee' => $shipping_fee,
             ]);
     }
 
     public function checkout(CheckoutRequest $request)
     {
+        $this->orderService->checkCartProductsQuantities($this->cartService);
         $order = $this->orderService->placeOrder($request->all(), $this->cartService);
         PlaceOrder::dispatch($order);
         return redirect()->route('order', ['id' => $order['id']]);
